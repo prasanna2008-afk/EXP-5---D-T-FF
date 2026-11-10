@@ -16,8 +16,7 @@ Q(next) = T ⊕ Q   (Q(next) = Q if T = 0, Q(next) = Q' if T = 1)
 
 ## Design / RTL Program
 // gedit dff_tff.v
-
- ```
+ 
 module dff (
     input  wire clk,   // clock
     input  wire rst,   // asynchronous active-high reset
@@ -48,15 +47,10 @@ module tff (
     end
 endmodule
 
-```
 ## Testbench Program
-
-
 // gedit tb5.v
-
-
- module tb5;
  
+module tb5;
     reg  clk, rst, D, T;
     wire Qd, Qt;
  
@@ -91,7 +85,8 @@ endmodule
         // ---- Apply asynchronous reset ----
         rst = 1; D = 0; T = 0;
         #7  rst = 0;
-         // ---- Apply test vectors on successive clock edges ----
+ 
+        // ---- Apply test vectors on successive clock edges ----
         @(negedge clk); D = 1; T = 1;
         @(negedge clk); D = 0; T = 1;
         @(negedge clk); D = 1; T = 0;
@@ -105,7 +100,9 @@ endmodule
  
         #20 $finish;
     end
-    endmodule
+endmodule
+
+
 
 ## Truth Table
 
@@ -154,6 +151,8 @@ In DVE:
 ●	Confirm that both Qd and Qt go to 0 immediately whenever rst = 1, independent of clk.
 
 The waveform should agree with the truth table.
+<img width="1900" height="1022" alt="Screenshot 2026-11-10 121541" src="https://github.com/user-attachments/assets/73083dbb-a469-41c9-8369-ba16f74a31f5" />
+<img width="1877" height="1030" alt="Screenshot 2026-11-10 121556" src="https://github.com/user-attachments/assets/ad6acd5b-e509-4f8a-9459-21cbfecff153" />
 
 ## Expected Result
 
